@@ -12,52 +12,36 @@ i follow this video for example  https://www.youtube.com/watch?v=zue3lAZyAec&ab_
      How would you do that?
    A: we will have hook in the context provider or in the context that would change or effect that state,
       and then you would use that hook inside of the component that you would like to change the state
-
 */
+const getLongestNonRepeatingChar = (str) => {
+  let strArr = [];
+  let subStr = '';
 
-import React from 'react';
-
-export default function App() {
-  const [longest, setLongest] = React.useState('');
-  const [input, setInput] = React.useState('');
-
-  const getLongestNonRepeatingChar = (str) => {
-    let strArr = [];
-    let subStr = '';
-
-    for (let i = 0; i < str.length; i++) {
-      let current = str[i];
-      if (subStr.includes(current)) {
-        strArr.push(subStr);
-        subStr = current;
-      } else {
-        subStr += current;
-      }
+  for (let i = 0; i < str.length; i++) {
+    let current = str[i];
+    if (subStr.includes(current)) {
+      strArr.push(subStr);
+      subStr = current;
+    } else {
+      subStr += current;
     }
+  }
 
-    strArr.push(subStr);
-    let maxLen = 0;
-    let longestStr = '';
+  strArr.push(subStr);
+  let maxLen = 0;
+  let longestStr = '';
 
-    for (let i = 0; i < strArr.length; i++) {
-      let currentVal = strArr[i];
-      if (currentVal.length > maxLen) {
-        longestStr = currentVal;
-        maxLen = currentVal.length; // Update maxLen as well
-      }
+  for (let i = 0; i < strArr.length; i++) {
+    let currentVal = strArr[i];
+    if (currentVal.length > maxLen) {
+      longestStr = currentVal;
+      maxLen = currentVal.length; // Update maxLen as well
     }
-    setLongest(longestStr);
-  };
+  }
+  return longestStr;
+};
 
-  const handleButtonClick = () => {
-    getLongestNonRepeatingChar(input);
-  };
+console.log(getLongestNonRepeatingChar('ABCDDDEFGHI'));
 
-  return (
-    <div className="App">
-      <input value={input} onChange={(e) => setInput(e.target.value)} />
-      <button onClick={handleButtonClick}>Check</button>
-      <h2>{longest}</h2>
-    </div>
-  );
-}
+// ====== LINK TO SANDBOX REACT ANSWER ======
+// https://codesandbox.io/s/kind-leavitt-8g1xq3?file=/src/App.js
